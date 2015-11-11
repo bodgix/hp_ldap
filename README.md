@@ -1,0 +1,1 @@
+A set of 3 docker containers: openldap, stunnel and tcpdump created to reverse-engineer the HP iLO's LDAP queries. The queries are decrypted with stunnel and tcpdump is used to capture the unencrypted traffic. openldap is also connected to the unencrypted end of the pipe.

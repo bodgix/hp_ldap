@@ -1,0 +1,22 @@
+openldap:
+  container_name: openldap
+  build: docker-openldap-master
+  ports:
+    - "389:389"
+  environment:
+    LDAP_DOMAIN: myworkday.com
+    LDAP_ROOTPASS: password
+stunnel:
+  build: stunnel
+  ports:
+    - "636:636"
+  links:
+    - openldap
+  environment:
+    LDAP_ALIAS: openldap
+tcpdump:
+  container_name: tcpdump
+  build: tcpdump
+  volumes:
+    - ./captures:/tcpdump
+  net: "container:openldap"
